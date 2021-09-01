@@ -9,34 +9,37 @@ author:
   affiliation_url: lbj.utexas.edu
 date: "`r Sys.Date()`"
 output:
+  word_document:
+    toc: yes
   distill::distill_article:
     code_folding: yes
     toc: yes
     toc_float: yes
     toc_depth: 3
-  pdf_document: default
   html_document: 
     theme: paper
     toc: true
     toc_float:
       collapsed: false
       smooth_scroll: false
-  word_document:
-    toc: yes
+  pdf_document: default
 ---
 
 # Analysis Setup
 
-Before we start building out our reproducible analysis, let's go ahead and make sure any R packages are loaded and installed properly. The code to install necessary packages and load them can be viewed by clicking on the "Show Code" arrow.
+[**Before**]{.ul} we start building out our reproducible analysis, let's go ahead and make sure any R packages are loaded and installed properly. The code to install necessary packages and load them can be viewed by clicking on the "Show Code" arrow.
 
 ```{r setup, include = TRUE, echo=TRUE, warning = FALSE, message = FALSE}
 knitr::opts_chunk$set(warning = FALSE, message = FALSE)
-# In case these aren't installed, uncomment this and run it.
-# install.packages(c("janitor", "tidyverse", "readxl"))
+# In case these aren't installed already from the prework, uncomment the next three lines and run them.
+# install.packages(c("rmarkdown", "tidyverse", "tidycensus", "distill", "devtools"))
+# install.packages(c("janitor", "readxl"))
+# devtools::install_github("utexas-lbjp-data/lbjdata")
 
 library(janitor)       # Package with useful + convenient data cleaning functions
 library(readxl)        # Package with useful functions for working with Excel Files
 library(tidyverse)     # Core Set of R Data Science Tools (dplyr, ggplot2, tidyr, readr, etc.)
+library(lbjdata)       # LBJ Data Package which has the ggplot2 themes
 
 ```
 
