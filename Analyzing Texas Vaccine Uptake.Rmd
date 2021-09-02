@@ -9,8 +9,7 @@ author:
   affiliation_url: lbj.utexas.edu
 date: "`r Sys.Date()`"
 output:
-  word_document:
-    toc: yes
+  pdf_document: default
   distill::distill_article:
     code_folding: yes
     toc: yes
@@ -22,7 +21,8 @@ output:
     toc_float:
       collapsed: false
       smooth_scroll: false
-  pdf_document: default
+  word_document:
+    toc: yes
 ---
 
 # Analysis Setup
@@ -34,12 +34,10 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 # In case these aren't installed already from the prework, uncomment the next three lines and run them.
 # install.packages(c("rmarkdown", "tidyverse", "tidycensus", "distill", "devtools"))
 # install.packages(c("janitor", "readxl"))
-# devtools::install_github("utexas-lbjp-data/lbjdata")
 
 library(janitor)       # Package with useful + convenient data cleaning functions
 library(readxl)        # Package with useful functions for working with Excel Files
 library(tidyverse)     # Core Set of R Data Science Tools (dplyr, ggplot2, tidyr, readr, etc.)
-library(lbjdata)       # LBJ Data Package which has the ggplot2 themes
 
 ```
 
@@ -143,7 +141,9 @@ uptake_chart <- ggplot(ranked_uptake) +
                      subtitle = "Top 10 Counties in Texas for Vaccine Uptake",
                      x = "Vaccine Uptake (%)",
                      y = "County") +
-                lbjdata::theme_lbj(base_size = 10)
+                theme_minimal(base_size = 10) +
+                theme(plot.title = element_text(size = 22, face = "bold"),
+                      legend.position = "none")
 
 uptake_chart
 
@@ -163,7 +163,9 @@ uptake_sorted <- ggplot(ranked_uptake) +
                      subtitle = "Top 10 Counties in Texas for Vaccine Uptake",
                      x = "Vaccine Uptake (%)",
                      y = "County") +
-                lbjdata::theme_lbj(base_family = "Libre Franklin", base_size = 10)
+                theme_minimal(base_size = 10) +
+                theme(plot.title = element_text(size = 22, face = "bold"),
+                      legend.position = "none")
 
 uptake_sorted
 
